@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PromptVault — AI Agent Automation Starters</title>
+  <style>
+    :root {
+      --bg: #10140f;
+      --panel: #1a2118;
+      --ink: #efe7d2;
+      --muted: #b7ad97;
+      --line: #3a4634;
+      --accent: #d6a23a;
+      --ok: #8fbf6a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.5 Georgia, "Palatino Linotype", serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top, #24301f, var(--bg) 42%);
+    }
+    header, main { max-width: 920px; margin: 0 auto; padding: 32px 20px; }
+    header { padding-bottom: 8px; }
+    h1 { font-size: 42px; line-height: 1; margin: 0 0 8px; letter-spacing: -0.03em; }
+    .kicker { color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; font: 12px/1.4 ui-sans-serif, system-ui, sans-serif; }
+    .lede { color: var(--muted); max-width: 62ch; }
+    .meta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; font: 13px/1.3 ui-sans-serif, system-ui, sans-serif; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; color: var(--ok); }
+    article {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 18px 14px;
+      margin: 14px 0;
+    }
+    h2 { margin: 0 0 6px; font-size: 22px; }
+    p { margin: 8px 0; }
+    pre {
+      white-space: pre-wrap;
+      background: #0d120c;
+      border-radius: 10px;
+      padding: 12px;
+      color: #f3ead4;
+      font: 13px/1.45 ui-monospace, Consolas, monospace;
+    }
+    button, .ghost {
+      font: 13px/1 ui-sans-serif, system-ui, sans-serif;
+      border: 0;
+      border-radius: 8px;
+      padding: 9px 12px;
+      cursor: pointer;
+      background: var(--accent);
+      color: #1a1408;
+    }
+    .ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); margin-left: 8px; }
+    .status { min-height: 1.2em; color: var(--ok); font: 13px/1.4 ui-sans-serif, system-ui, sans-serif; }
+    footer { color: var(--muted); font-size: 14px; padding-bottom: 48px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="kicker">Starter product · v0.1 local preview</div>
+    <h1>PromptVault</h1>
+    <p class="lede">A small sellable library of prompts and scripts for people who run a local AI agent station. This page is the thing you could not see in chat: open it, copy an entry, and we keep filling the vault from here.</p>
+    <div class="meta">
+      <span class="pill">10 entries planned</span>
+      <span class="pill">3 starter entries live</span>
+      <span class="pill">Target price $15</span>
+    </div>
+  </header>
+  <main>
+    <article>
+      <h2>1. Lock the next 10 entries</h2>
+      <p>What it delivered: a short list of problems worth packaging, instead of a pile of generic prompts.</p>
+      <pre id="p1">You are curating a $15 digital product called PromptVault for solo builders who run a local AI agent.
+Return exactly 10 entries. Each entry must name: the buyer pain, the prompt, the script the agent should run, and the proof a buyer can check.
+Prefer problems a local agent can finish in one sitting: research a niche, draft a sales page, turn notes into a routine, package a deliverable.
+Reject vague "be more productive" ideas.</pre>
+      <button onclick="copy('p1', this)">Copy prompt</button>
+      <span class="status"></span>
+    </article>
+    <article>
+      <h2>2. Turn research into a one-page offer</h2>
+      <p>What it delivered: a sales page a buyer can paste into Gumroad without rewriting the whole thing.</p>
+      <pre id="p2">Using only the notes I give you, write a one-page offer for PromptVault.
+Include: who it is for, the painful moment it solves, what is inside, what is not included, the $15 price reason, and a 5-step "first hour" guide.
+Voice: plain, specific, no hype words. End with a checklist the buyer can tick after purchase.</pre>
+      <button onclick="copy('p2', this)">Copy prompt</button>
+      <span class="status"></span>
+    </article>
+    <article>
+      <h2>3. Package a station routine</h2>
+      <p>What it delivered: a weekly job the buyer can schedule, so the vault keeps producing instead of sitting in a folder.</p>
+      <pre id="p3">Write a weekly station routine for a local agent.
+Every Monday at 8am, search for 5 new prompt patterns relevant to local AI agents, keep only the ones with a concrete deliverable, and append them to promptvault/inbox.md in this format: pain, prompt, script, proof.
+Do not duplicate an entry already in the vault. Flag anything that needs a paid account.</pre>
+      <button onclick="copy('p3', this)">Copy prompt</button>
+      <span class="status"></span>
+    </article>
+    <footer>
+      Built on this station as the first hands-on product. Next: research the remaining 7 entries, then draft the Gumroad page beside this preview.
+    </footer>
+  </main>
+  <script>
+    async function copy(id, btn) {
+      const text = document.getElementById(id).innerText;
+      const status = btn.parentElement.querySelector(".status");
+      try {
+        await navigator.clipboard.writeText(text);
+        status.textContent = "Copied.";
+      } catch (err) {
+        status.textContent = "Select the prompt and copy it manually.";
+      }
+    }
+  </script>
+</body>
+</html>
